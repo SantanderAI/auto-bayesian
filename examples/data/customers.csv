@@ -1,0 +1,11 @@
+customer_id,region,tenure_months,segment
+101,north,3,small
+102,west,18,enterprise
+103,south,7,mid
+104,west,28,enterprise
+105,east,4,small
+106,west,24,enterprise
+107,south,9,mid
+108,west,32,enterprise
+109,east,5,small
+110,west,30,enterprise
