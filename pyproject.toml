@@ -30,7 +30,7 @@ classifiers = [
 dependencies = [
     "numpy>=2.2.0",
     "pandas>=2.2.0",
-    "pgmpy>=1.0.0,<1.1.0",
+    "pgmpy>=1.0.0,<1.2.0",
     "pyarrow>=18.0.0",
 ]
 
