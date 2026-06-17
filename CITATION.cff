@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "auto-bayesian: interpretable AutoML for Bayesian-network classifiers"
+abstract: "A config-driven Python library and CLI that trains interpretable Bayesian-network classifiers from relational tabular data, with automatic candidate selection (Naive Bayes, TAN, Hill-Climb), deterministic preprocessing, and human-readable conditional probability tables."
+type: software
+version: 0.1.0
+date-released: 2026-06-17
+url: "https://github.com/SantanderAI/auto-bayesian"
+repository-code: "https://github.com/SantanderAI/auto-bayesian"
+license: Apache-2.0
+authors:
+  - name: "Santander AI Lab"
+keywords:
+  - bayesian-network
+  - automl
+  - interpretable-ml
+  - explainable-ai
+  - responsible-ai
+  - tabular-data

@@ -1,0 +1,49 @@
+[task]
+root_table = "leads"
+target_column = "converted"
+positive_label = "1"
+
+[run]
+output_dir = "artifacts/lead_scoring"
+random_seed = 7
+test_fraction = 0.25
+
+[preprocess]
+numeric_bins = 4
+max_categories = 10
+
+[[tables]]
+name = "leads"
+path = "data/leads.csv"
+primary_key = "lead_id"
+
+[[tables]]
+name = "customers"
+path = "data/customers.csv"
+primary_key = "customer_id"
+
+[[tables]]
+name = "interactions"
+path = "data/interactions.csv"
+primary_key = "interaction_id"
+timestamp_column = "event_time"
+
+[[relations]]
+parent = "leads"
+child = "customers"
+parent_key = "customer_id"
+child_key = "customer_id"
+kind = "one_to_one"
+
+[[relations]]
+parent = "leads"
+child = "interactions"
+parent_key = "lead_id"
+child_key = "lead_id"
+kind = "one_to_many"
+aggregations = [
+  { op = "count", name = "interaction_count" },
+  { column = "channel", op = "nunique", name = "channel_count" },
+  { column = "days_to_close", op = "mean", name = "mean_days_to_close" },
+  { column = "channel", op = "latest", name = "latest_channel" },
+]
