@@ -25,6 +25,10 @@ updates:
       python-dependencies:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "pgmpy"
+        versions:
+          - ">=1.1.0"
 
   # GitHub Actions used by workflows in .github/workflows/
   - package-ecosystem: github-actions
