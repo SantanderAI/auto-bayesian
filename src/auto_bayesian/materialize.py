@@ -54,6 +54,18 @@ def materialize_project(
                 left_on=relation.parent_key,
                 right_on=relation.parent_key,
             )
+            count_columns = [
+                aggregate.output_name(relation.child)
+                for aggregate in relation.aggregations
+                if aggregate.op in ("count", "nunique")
+            ]
+            if count_columns:
+                # A parent with no child rows has a count of 0, not a missing
+                # value. Left NaN, these zeros would later be binned as
+                # "__missing__" and become indistinguishable from genuinely
+                # absent data. Other ops (mean, latest, ...) stay NaN, since
+                # they are truly undefined over an empty set.
+                parent[count_columns] = parent[count_columns].fillna(0)
         if relation.sequence_features:
             seq = _compute_sequence_features(child, relation, project.tables[relation.child])
             parent = parent.merge(
