@@ -1,3 +1,12 @@
 {
-  "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "CristobalSantana",
+      "id": 113156237,
+      "comment_id": 4883804053,
+      "created_at": "2026-07-04T21:05:28Z",
+      "repoId": 1272499927,
+      "pullRequestNo": 14
+    }
+  ]
 }
