@@ -244,6 +244,12 @@ Training writes these files into `run.output_dir`:
 - `network.json`
 - `model.pkl`
 
+> **Security note:** `model.pkl` is a Python
+> [pickle](https://docs.python.org/3/library/pickle.html) file. Loading a
+> pickle can execute arbitrary code, so call `AutoBayesModel.load()` only on
+> model directories you created yourself or obtained from a source you fully
+> trust.
+
 ## Limits
 
 - Each table can have at most one parent relation.
