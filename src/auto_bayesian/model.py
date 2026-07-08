@@ -148,6 +148,11 @@ class AutoBayesModel:
 
         Writes ``model.pkl``, ``metrics.json``, ``network.json``, and (when
         available) ``materialized.parquet`` into ``output_dir``.
+
+        .. note::
+           ``model.pkl`` is a :mod:`pickle` file. Treat saved model
+           directories as trusted artifacts and share them only through
+           channels where they cannot be tampered with.
         """
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
@@ -208,7 +213,14 @@ class AutoBayesModel:
 
     @classmethod
     def load(cls, output_dir: str | Path) -> "AutoBayesModel":
-        """Load a model previously written by :meth:`save`."""
+        """Load a model previously written by :meth:`save`.
+
+        .. warning::
+           ``model.pkl`` is deserialized with :mod:`pickle`, which can
+           execute arbitrary code embedded in a malicious file. Only load
+           model directories that you created yourself or that come from a
+           source you fully trust.
+        """
         output_path = Path(output_dir)
         with (output_path / "model.pkl").open("rb") as handle:
             payload = pickle.load(handle)
